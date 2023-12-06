@@ -12,9 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         title: 'Tasko',
-        theme: ThemeData(fontFamily: "nas"),
+        theme: ThemeData(
+            // fontFamily: "nas",
+            scaffoldBackgroundColor: Colors.grey[200]),
         home: Scaffold(
           body: HomeScreen(),
         ));
