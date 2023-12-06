@@ -13,8 +13,8 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-      padding: EdgeInsets.only(left: 10, top: 10, right: 10),
-      child: Row(
+      padding: const EdgeInsets.only(left: 10, top: 20, right: 10),
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(
@@ -22,10 +22,9 @@ class HomeScreenState extends State<HomeScreen> {
             size: 40,
           ),
           Image(
-            image: AssetImage("assets/images/logo.jpg"),
-            width: 60,
-            height: 60,
-          )
+              image: AssetImage("assets/images/logo.jpg"),
+              width: 50,
+              height: 50)
         ],
       ),
     )));
