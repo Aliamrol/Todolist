@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/homeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,15 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tasko',
-      theme: ThemeData(
-        fontFamily: "nas"
-      ),
-      home: Scaffold(
-        body: Center(child: Text("سلام ایرانی", textScaleFactor: 10,),),
-      ),
       debugShowCheckedModeBanner: false,
-    );
+        title: 'Tasko',
+        theme: ThemeData(fontFamily: "nas"),
+        home: Scaffold(
+          body: HomeScreen(),
+        ));
   }
 }
-
