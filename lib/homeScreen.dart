@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+int i = 0;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -53,12 +55,57 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     Expanded(
                         child: ListView.builder(
-                          itemCount: 10,
+                            itemCount: 10,
                             itemBuilder: (context, index) {
+                              i = index;
                               return Container(
-                                color: Colors.green,
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(20)),
                                 margin: EdgeInsets.only(top: 10),
                                 height: 70,
+                                padding: EdgeInsets.all(10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Job ${i + 1} ",
+                                          textScaleFactor: 1.4,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(3),
+                                          child: Text(
+                                            "Do this Job ",
+                                            textScaleFactor: 1.2,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        textBaseline: TextBaseline.ideographic,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.red[500],
+                                              )),
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.circle_outlined))
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               );
                             }))
                   ],

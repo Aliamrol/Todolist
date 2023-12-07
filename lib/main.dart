@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             // fontFamily: "nas",
             scaffoldBackgroundColor: Colors.grey[200]),
-        home: Scaffold(
+        home: const Scaffold(
           body: HomeScreen(),
         ));
   }
