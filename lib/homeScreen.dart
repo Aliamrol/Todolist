@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/taskScreen.dart';
 
 int i = 0;
 
@@ -120,17 +121,25 @@ class HomeScreenState extends State<HomeScreen> {
                     Positioned(
                       bottom: 50,
                       left: 10,
-                      child: Container(
-                        child: Icon(
-                          Icons.add,
-                          size: 60,
-                          color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => taskScreen()));
+                        },
+                        child: Container(
+                          child: Icon(
+                            Icons.add,
+                            size: 60,
+                            color: Colors.white,
+                          ),
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.red[400],
+                              borderRadius: BorderRadius.circular(30)),
                         ),
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                            color: Colors.red[400],
-                            borderRadius: BorderRadius.circular(30)),
                       ),
                     )
                   ],
