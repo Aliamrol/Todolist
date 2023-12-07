@@ -50,7 +50,17 @@ class HomeScreenState extends State<HomeScreen> {
                           )
                         ],
                       ),
-                    )
+                    ),
+                    Expanded(
+                        child: ListView.builder(
+                          itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                color: Colors.green,
+                                margin: EdgeInsets.only(top: 10),
+                                height: 70,
+                              );
+                            }))
                   ],
                 ))));
   }
