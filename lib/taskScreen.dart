@@ -1,120 +1,66 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/WidgetTodo.dart';
 
-Widget icon = const IconEmpty();
-
-class IconEmpty extends StatefulWidget {
-  const IconEmpty({super.key});
-
+class TaskScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _IconEmpty();
+  State<StatefulWidget> createState() => TaskScreenState();
 }
-class _IconEmpty extends State<IconEmpty> {
+
+class TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          setState(() {
-            icon = IconFull();
-          });
-        },
-        icon: const Icon(Icons.check_box_outline_blank));
-  }
-}
-
-class IconFull extends StatefulWidget {
-  const IconFull({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _IconFull();
-}
-
-class _IconFull extends State<IconFull> {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          setState(() {
-            icon = IconEmpty();
-          });
-        },
-        icon: Icon(Icons.check_box));
-  }
-}
-
-class taskScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => taskScreenState();
-}
-
-class taskScreenState extends State<taskScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Container(
-        padding: EdgeInsets.only(top: 20, right: 20, left: 20),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.arrow_back_rounded,
-                    color: Colors.grey[700],
-                    size: 30,
-                  ),
-                ),
-                Expanded(
-                    child: Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: TextField(
-                    decoration: InputDecoration(hintText: "Subject Task"),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                        fontSize: 24),
-                  ),
-                ))
-              ],
-            ),
-            Expanded(
-                child: ListView(
+    return Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+            body: SafeArea(
+          child: Container(
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
               children: [
                 Row(
                   children: [
-                    // Container(
-                    //   height: 20,
-                    //   width: 20,
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.red,
-                    //     borderRadius: BorderRadius.circular(5),
-                    //   ),
-                    // ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {});
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
                       },
-                      icon: icon,
-                      padding: EdgeInsets.only(left: 10, right: 30),
+                      child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.grey[700],
+                      ),
                     ),
-                    Text(
-                      "Task 1",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.blue),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: "عنوان کار شما",
+                              border: InputBorder.none),
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[800]),
+                        ),
+                      ),
                     )
                   ],
                 ),
-                Text("Task 2")
+                Expanded(
+                    child: ListView(
+                  children: [
+                    TodoWidget(title: "ثبت دامنه راکت", isdone: true),
+                    TodoWidget(
+                      title: "استخدام برنامه نویس",
+                      isdone: false,
+                    ),
+                    TodoWidget(
+                      title: "ساخت قالب راکت",
+                      isdone: false,
+                    ),
+                  ],
+                ))
               ],
-            ))
-          ],
-        ),
-      ),
-    ));
+            ),
+          ),
+        )));
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/taskScreen.dart';
-
-int i = 0;
+import 'taskScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,136 +11,121 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-            child: Container(
-                padding: EdgeInsets.only(left: 10, top: 20, right: 10),
-                child: Stack(
+    return Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          body: SafeArea(
+              child: Container(
+            padding: EdgeInsets.only(top: 10, right: 20, left: 20),
+            child: Stack(
+              children: [
+                Column(
                   children: [
-                    Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // appBar
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.menu,
-                              size: 40,
-                            ),
-                            Image(
-                                image: AssetImage("assets/images/logo.jpg"),
-                                width: 50,
-                                height: 50)
-                          ],
+                        Image(
+                          width: 40,
+                          height: 40,
+                          image: AssetImage("assets/images/logo.jpg"),
                         ),
-                        // heroSection
-                        Container(
-                          margin: EdgeInsets.only(top: 10),
-                          padding: EdgeInsets.only(
-                              left: 60, right: 60, top: 20, bottom: 20),
+                        Icon(Icons.menu, size: 28)
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 6),
+                            child: Text(
+                              "کارها را مدیریت کن",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[800],
+                                  fontSize: 16),
+                            ),
+                          ),
+                          Text(
+                            "با App راکت کارهای شخصی خودت رو منظم کن و با مدیریت کامل به اون ها رسیدگی کن",
+                            style: TextStyle(color: Colors.grey[600]),
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                        child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: Colors.green[200],
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Manage your job",
-                                textScaleFactor: 2,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "کار فلان",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey[800],
+                                      ),
+                                    ),
+                                    Text(
+                                      "توضیحات کار فلان",
+                                      style: TextStyle(color: Colors.grey[600]),
+                                    )
+                                  ],
+                                ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Text("Manage your job and Enjoy!"),
+                              Icon(
+                                Icons.delete,
+                                color: Colors.red[300],
+                                size: 20,
                               )
                             ],
                           ),
-                        ),
-                        // listView
-                        Expanded(
-                            child: ListView.builder(
-                                itemCount: 10,
-                                itemBuilder: (context, index) {
-                                  i = index;
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    margin: EdgeInsets.only(top: 10),
-                                    height: 70,
-                                    padding: EdgeInsets.all(10),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Job ${i + 1} ",
-                                              textScaleFactor: 1.4,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.all(3),
-                                              child: Text(
-                                                "Do this Job ",
-                                                textScaleFactor: 1.2,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              IconButton(
-                                                  onPressed: () {},
-                                                  icon: Icon(
-                                                    Icons.delete,
-                                                    color: Colors.red[500],
-                                                  )),
-                                              IconButton(
-                                                  onPressed: () {},
-                                                  icon: Icon(
-                                                      Icons.circle_outlined))
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                })),
-                      ],
-                    ),
-                    // floatingPointAction
-                    Positioned(
-                      bottom: 50,
-                      left: 10,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => taskScreen()));
-                        },
-                        child: Container(
-                          child: Icon(
-                            Icons.add,
-                            size: 60,
-                            color: Colors.white,
-                          ),
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.red[400],
-                              borderRadius: BorderRadius.circular(30)),
-                        ),
-                      ),
-                    )
+                        );
+                      },
+                    )),
                   ],
-                ))));
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 0,
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TaskScreen()));
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.red[400],
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      )),
+                )
+              ],
+            ),
+          )),
+        ));
   }
 }
