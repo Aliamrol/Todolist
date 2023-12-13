@@ -17,6 +17,7 @@ class TaskScreenState extends State<TaskScreen> {
             padding: EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Column(
               children: [
+                // appBar ( back buttom and subject)
                 Row(
                   children: [
                     GestureDetector(
@@ -44,20 +45,57 @@ class TaskScreenState extends State<TaskScreen> {
                     )
                   ],
                 ),
+                // textField for enter the tozih
+                TextField(
+                  decoration: InputDecoration(
+                      hintText: "توضیح کار خود را در اینجا وارد کنید",
+                      border: InputBorder.none),
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 14,
+                  ),
+                  minLines: 1,
+                  maxLines: 3,
+                ),
+                // list of toDo
                 Expanded(
-                    child: ListView(
+                    child: Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: ListView(
+                    children: [
+                      TodoWidget(title: "ثبت دامنه راکت", isdone: true),
+                      TodoWidget(
+                        title: "استخدام برنامه نویس",
+                        isdone: false,
+                      ),
+                      TodoWidget(
+                        title: "ساخت قالب راکت",
+                        isdone: false,
+                      ),
+                    ],
+                  ),
+                )),
+                Row(
                   children: [
-                    TodoWidget(title: "ثبت دامنه راکت", isdone: true),
-                    TodoWidget(
-                      title: "استخدام برنامه نویس",
-                      isdone: false,
+                    Container(
+                      width: 15,
+                      height: 15,
+                      margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[800],
+                          borderRadius: BorderRadius.circular(4)),
                     ),
-                    TodoWidget(
-                      title: "ساخت قالب راکت",
-                      isdone: false,
-                    ),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "کار جدید به لیست کارها اضافه کنید",
+                          border: InputBorder.none
+                        ),
+                        style: TextStyle(color: Colors.blue, fontSize: 18),
+                      ),
+                    )
                   ],
-                ))
+                )
               ],
             ),
           ),
