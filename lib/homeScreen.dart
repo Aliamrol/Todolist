@@ -18,6 +18,12 @@ class HomeScreenState extends State<HomeScreen> {
     Task(title: "ساخت ویدیو یوتیوب")
   ];
 
+  void AddNewTaskToTasks(Task t) {
+    setState(() {
+      tasks.add(t);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -46,14 +52,17 @@ class HomeScreenState extends State<HomeScreen> {
                         child: ListView.builder(
                       itemCount: tasks.length,
                       itemBuilder: (BuildContext context, int index) =>
-                          taskItem(context: context,index: index,task: tasks[index]),
+                          taskItem(
+                              context: context,
+                              index: index,
+                              task: tasks[index]),
                     )),
                   ],
                 ),
                 Positioned(
                   bottom: 10,
                   left: 0,
-                  child: addTaskbuttom(),
+                  child: addTaskbuttom(AddNewTaskToTasks: AddNewTaskToTasks,),
                 )
               ],
             ),

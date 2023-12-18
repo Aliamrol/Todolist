@@ -16,6 +16,7 @@ class TaskScreenState extends State<TaskScreen> {
   List<Todo> todos = [];
   Task? task;
   TextEditingController taskTitleController = TextEditingController();
+  TextEditingController taskDescriptioController = TextEditingController();
 
   AddTodo(value) {
     setState(() {
@@ -72,43 +73,57 @@ class TaskScreenState extends State<TaskScreen> {
                   ],
                 ),
                 // textField for enter the tozih
-                TextField(
-                  decoration: InputDecoration(
-                      hintText: "توضیح کار خود را در اینجا وارد کنید",
-                      border: InputBorder.none),
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 14,
+                Visibility(
+                  visible: task != null,
+                  child: TextField(
+                    controller: taskDescriptioController,
+                    onChanged: (value){
+                      task?.description = value;
+                    },
+                    decoration: InputDecoration(
+                        hintText: "توضیح کار خود را در اینجا وارد کنید",
+                        border: InputBorder.none),
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 14,
+                    ),
+                    minLines: 1,
+                    maxLines: 3,
                   ),
-                  minLines: 1,
-                  maxLines: 3,
                 ),
                 // list of toDo
-                Expanded(
-                    child: Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: ListView.builder(
-                    itemCount: todos.length,
-                    itemBuilder: (context, index) => TodoWidget(
-                        title: todos[index].title, isdone: todos[index].isdone),
-                  ),
-                )),
-                Row(
-                  children: [
-                    Container(
-                      width: 15,
-                      height: 15,
-                      margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
-                      decoration: BoxDecoration(
-                          color: Colors.grey[800],
-                          borderRadius: BorderRadius.circular(4)),
+                Visibility(
+                  visible: task != null,
+                  child: Expanded(
+                      child: Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: ListView.builder(
+                      itemCount: todos.length,
+                      itemBuilder: (context, index) => TodoWidget(
+                          title: todos[index].title,
+                          isdone: todos[index].isdone),
                     ),
-                    Expanded(
-                        child: AddNewTodo(
-                      AddTodo: AddTodo,
+                  )),
+                ),
+                Visibility(
+                    visible: task != null,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 15,
+                          height: 15,
+                          margin:
+                              EdgeInsets.only(right: 20, left: 20, bottom: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[800],
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                        Expanded(
+                            child: AddNewTodo(
+                          AddTodo: AddTodo,
+                        ))
+                      ],
                     ))
-                  ],
-                )
               ],
             ),
           ),

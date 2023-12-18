@@ -3,7 +3,9 @@ import '../../Task.dart';
 import '../../taskScreen.dart';
 
 class addTaskbuttom extends StatelessWidget {
-  const addTaskbuttom({super.key});
+  final Function AddNewTaskToTasks;
+
+  const addTaskbuttom({super.key, required this.AddNewTaskToTasks});
 
   void switchToCreatTaskScreen(context) async {
     Task? result = await Navigator.push(
@@ -11,7 +13,7 @@ class addTaskbuttom extends StatelessWidget {
         MaterialPageRoute(
             builder: (context) => TaskScreen()));
     if(result != null){
-       print(result.title);
+       AddNewTaskToTasks(result);
     }
   }
 
