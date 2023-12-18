@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../Task.dart';
+
 class taskItem extends StatelessWidget {
-  const taskItem({super.key});
+  final BuildContext context;
+  final int index;
+  final Task task;
+
+  taskItem({required this.context, required this.index, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +24,14 @@ class taskItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "کار فلان",
+                  task.title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[800],
                   ),
                 ),
                 Text(
-                  "توضیحات کار فلان",
+                  task.description ?? "توضیحی هنوز وارد نشده است",
                   style: TextStyle(color: Colors.grey[600]),
                 )
               ],

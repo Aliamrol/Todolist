@@ -3,10 +3,10 @@ import 'package:task_manager/AddNewTodo.dart';
 import 'package:task_manager/Todo.dart';
 import 'package:task_manager/WidgetTodo.dart';
 
-class TaskScreen extends StatefulWidget {
-  final String title;
+import 'Task.dart';
 
-  TaskScreen({required this.title});
+class TaskScreen extends StatefulWidget {
+  TaskScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => TaskScreenState();
@@ -14,6 +14,8 @@ class TaskScreen extends StatefulWidget {
 
 class TaskScreenState extends State<TaskScreen> {
   List<Todo> todos = [];
+  Task? task;
+  TextEditingController taskTitleController = TextEditingController();
 
   AddTodo(value) {
     setState(() {
@@ -23,7 +25,6 @@ class TaskScreenState extends State<TaskScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.title);
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
@@ -37,7 +38,7 @@ class TaskScreenState extends State<TaskScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context, "Mina Hsnp");
+                        Navigator.pop(context, task);
                       },
                       child: Icon(
                         Icons.arrow_back_rounded,
@@ -48,6 +49,16 @@ class TaskScreenState extends State<TaskScreen> {
                       child: Padding(
                         padding: EdgeInsets.only(right: 20),
                         child: TextField(
+                          controller: taskTitleController,
+                          onSubmitted: (value) {
+                            if (task == null) {
+                              setState(() {
+                                task = Task(title: value);
+                              });
+                            } else {
+                              task?.title = value;
+                            }
+                          },
                           decoration: InputDecoration(
                               hintText: "عنوان کار شما",
                               border: InputBorder.none),

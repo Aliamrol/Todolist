@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/Widget/Task/addTaskButtom.dart';
 import 'package:task_manager/Widget/Task/heroSection.dart';
 import 'package:task_manager/Widget/Task/taskItem.dart';
+import 'Task.dart';
 import 'taskScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +13,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  List<Task> tasks = [
+    Task(title: "ساخت راکت"),
+    Task(title: "ساخت ویدیو یوتیوب")
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -38,9 +44,9 @@ class HomeScreenState extends State<HomeScreen> {
                     HeroSection(),
                     Expanded(
                         child: ListView.builder(
-                      itemCount: 10,
+                      itemCount: tasks.length,
                       itemBuilder: (BuildContext context, int index) =>
-                          taskItem(),
+                          taskItem(context: context,index: index,task: tasks[index]),
                     )),
                   ],
                 ),
