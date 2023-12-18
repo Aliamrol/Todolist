@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/AddNewTodo.dart';
 import 'package:task_manager/Todo.dart';
 import 'package:task_manager/WidgetTodo.dart';
-
-
 
 class TaskScreen extends StatefulWidget {
   @override
@@ -11,7 +10,12 @@ class TaskScreen extends StatefulWidget {
 
 class TaskScreenState extends State<TaskScreen> {
   List<Todo> todos = [];
-  TextEditingController _controller = TextEditingController();
+
+  AddTodo(value) {
+    setState(() {
+      todos.add(Todo(title: value, isdone: false));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,20 +88,9 @@ class TaskScreenState extends State<TaskScreen> {
                           borderRadius: BorderRadius.circular(4)),
                     ),
                     Expanded(
-                      child: TextField(
-                        controller: _controller,
-                        onSubmitted: (value) {
-                          setState(() {
-                            todos.add(Todo(title: value));
-                          });
-                          _controller.clear();
-                        },
-                        decoration: InputDecoration(
-                            hintText: "کار جدید به لیست کارها اضافه کنید",
-                            border: InputBorder.none),
-                        style: TextStyle(color: Colors.blue, fontSize: 18),
-                      ),
-                    )
+                        child: AddNewTodo(
+                      AddTodo: AddTodo,
+                    ))
                   ],
                 )
               ],
