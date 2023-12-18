@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import '../../taskScreen.dart';
 
 class addTaskbuttom extends StatelessWidget {
-  void switchToCreatTaskScreen(context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => TaskScreen()));
+  const addTaskbuttom({super.key});
+
+  void switchToCreatTaskScreen(context) async {
+    String result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => TaskScreen(title: "Ali Amrol",)));
+    print(result);
   }
 
   @override

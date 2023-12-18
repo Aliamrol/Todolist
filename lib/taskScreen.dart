@@ -4,6 +4,10 @@ import 'package:task_manager/Todo.dart';
 import 'package:task_manager/WidgetTodo.dart';
 
 class TaskScreen extends StatefulWidget {
+  final String title;
+
+  TaskScreen({required this.title});
+
   @override
   State<StatefulWidget> createState() => TaskScreenState();
 }
@@ -19,6 +23,7 @@ class TaskScreenState extends State<TaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.title);
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
@@ -32,7 +37,7 @@ class TaskScreenState extends State<TaskScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context, "Mina Hsnp");
                       },
                       child: Icon(
                         Icons.arrow_back_rounded,
