@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/Todo.dart';
 import 'package:task_manager/WidgetTodo.dart';
 
 class TaskScreen extends StatefulWidget {
@@ -7,6 +8,9 @@ class TaskScreen extends StatefulWidget {
 }
 
 class TaskScreenState extends State<TaskScreen> {
+  List<Todo> todos = [];
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -61,18 +65,10 @@ class TaskScreenState extends State<TaskScreen> {
                 Expanded(
                     child: Padding(
                   padding: EdgeInsets.only(top: 20),
-                  child: ListView(
-                    children: [
-                      TodoWidget(title: "ثبت دامنه راکت", isdone: true),
-                      TodoWidget(
-                        title: "استخدام برنامه نویس",
-                        isdone: false,
-                      ),
-                      TodoWidget(
-                        title: "ساخت قالب راکت",
-                        isdone: false,
-                      ),
-                    ],
+                  child: ListView.builder(
+                    itemCount: todos.length,
+                    itemBuilder: (context, index) => TodoWidget(
+                        title: todos[index].title, isdone: todos[index].isdone),
                   ),
                 )),
                 Row(
@@ -87,10 +83,16 @@ class TaskScreenState extends State<TaskScreen> {
                     ),
                     Expanded(
                       child: TextField(
+                        controller: _controller,
+                        onSubmitted: (value) {
+                          setState(() {
+                            todos.add(Todo(title: value));
+                          });
+                          _controller.clear();
+                        },
                         decoration: InputDecoration(
-                          hintText: "کار جدید به لیست کارها اضافه کنید",
-                          border: InputBorder.none
-                        ),
+                            hintText: "کار جدید به لیست کارها اضافه کنید",
+                            border: InputBorder.none),
                         style: TextStyle(color: Colors.blue, fontSize: 18),
                       ),
                     )
