@@ -1,7 +1,7 @@
-class Task{
-  late final String title;
-
+class Task {
+  final int id;
+  late String title;
   String? description;
 
-  Task({required this.title, this.description});
+  Task({required this.title, required this.id, this.description});
 }
