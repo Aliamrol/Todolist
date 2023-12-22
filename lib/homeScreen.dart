@@ -13,10 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  List<Task> tasks = [
-    Task(title: "ساخت راکت"),
-    Task(title: "ساخت ویدیو یوتیوب")
-  ];
+  List<Task> tasks = [];
 
   void AddNewTaskToTasks(Task t) {
     setState(() {
@@ -62,7 +59,9 @@ class HomeScreenState extends State<HomeScreen> {
                 Positioned(
                   bottom: 10,
                   left: 0,
-                  child: addTaskbuttom(AddNewTaskToTasks: AddNewTaskToTasks,),
+                  child: addTaskbuttom(
+                    AddNewTaskToTasks: AddNewTaskToTasks,
+                  ),
                 )
               ],
             ),

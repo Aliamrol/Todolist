@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/AddNewTodo.dart';
 import 'package:task_manager/Todo.dart';
+import 'package:task_manager/Widget/Task/taskItem.dart';
 import 'package:task_manager/WidgetTodo.dart';
 
 import 'Task.dart';
 
 class TaskScreen extends StatefulWidget {
-  TaskScreen({super.key});
+  TaskScreen({super.key, this.task});
+
+  Task? task;
 
   @override
   State<StatefulWidget> createState() => TaskScreenState();
@@ -14,9 +17,17 @@ class TaskScreen extends StatefulWidget {
 
 class TaskScreenState extends State<TaskScreen> {
   List<Todo> todos = [];
-  Task? task;
   TextEditingController taskTitleController = TextEditingController();
   TextEditingController taskDescriptioController = TextEditingController();
+
+  @override
+  initState(){
+    super.initState();
+    if(widget.task != null){
+      taskTitleController.text = widget.task?.title ?? "";
+      taskDescriptioController.text = widget.task?.description ?? "";
+    }
+  }
 
   AddTodo(value) {
     setState(() {
@@ -39,7 +50,7 @@ class TaskScreenState extends State<TaskScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context, task);
+                        Navigator.pop(context, widget.task);
                       },
                       child: Icon(
                         Icons.arrow_back_rounded,
@@ -52,12 +63,12 @@ class TaskScreenState extends State<TaskScreen> {
                         child: TextField(
                           controller: taskTitleController,
                           onSubmitted: (value) {
-                            if (task == null) {
+                            if (widget.task == null) {
                               setState(() {
-                                task = Task(title: value);
+                                widget.task = Task(title: value);
                               });
                             } else {
-                              task?.title = value;
+                              widget.task?.title = value;
                             }
                           },
                           decoration: InputDecoration(
@@ -74,11 +85,11 @@ class TaskScreenState extends State<TaskScreen> {
                 ),
                 // textField for enter the tozih
                 Visibility(
-                  visible: task != null,
+                  visible: widget.task != null,
                   child: TextField(
                     controller: taskDescriptioController,
-                    onChanged: (value){
-                      task?.description = value;
+                    onChanged: (value) {
+                      widget.task?.description = value;
                     },
                     decoration: InputDecoration(
                         hintText: "توضیح کار خود را در اینجا وارد کنید",
@@ -93,7 +104,7 @@ class TaskScreenState extends State<TaskScreen> {
                 ),
                 // list of toDo
                 Visibility(
-                  visible: task != null,
+                  visible: widget.task != null,
                   child: Expanded(
                       child: Padding(
                     padding: EdgeInsets.only(top: 20),
@@ -106,7 +117,7 @@ class TaskScreenState extends State<TaskScreen> {
                   )),
                 ),
                 Visibility(
-                    visible: task != null,
+                    visible: widget.task != null,
                     child: Row(
                       children: [
                         Container(

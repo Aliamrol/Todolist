@@ -12,8 +12,10 @@ class AddNewTodo extends StatelessWidget {
     return TextField(
       controller: _controller,
       onSubmitted: (value) {
-        AddTodo(value);
-        _controller.clear();
+        if (true) {
+          AddTodo(value);
+          _controller.clear();
+        }
       },
       decoration: InputDecoration(
           hintText: "کار جدید به لیست کارها اضافه کنید",
