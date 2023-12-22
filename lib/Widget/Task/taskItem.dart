@@ -7,8 +7,9 @@ class taskItem extends StatelessWidget {
   final BuildContext context;
   final int index;
   final Task task;
+  final Function updateTask;
 
-  taskItem({required this.context, required this.index, required this.task});
+  taskItem({required this.context, required this.index, required this.task, required this.updateTask});
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,7 @@ class taskItem extends StatelessWidget {
         // if (result != null) {
         //   AddNewTaskToTasks(result);
         // }
+        updateTask(task);
       },
     );
   }

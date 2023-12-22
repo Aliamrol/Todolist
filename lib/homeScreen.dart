@@ -13,11 +13,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  List<Task> tasks = [];
+  List<Task> tasks = [
+    Task(title: "Phaz 1 SW", id: 123, description: "Done SW")
+  ];
 
   void AddNewTaskToTasks(Task t) {
     setState(() {
       tasks.add(t);
+    });
+  }
+
+  void UpdateTask(Task task){
+    setState(() {
+      tasks = tasks.map((e) {
+        if(e.id == task.id){
+          return task;
+        }
+        return e;
+      }).toList();
     });
   }
 
@@ -52,7 +65,7 @@ class HomeScreenState extends State<HomeScreen> {
                           taskItem(
                               context: context,
                               index: index,
-                              task: tasks[index]),
+                              task: tasks[index], updateTask: UpdateTask,),
                     )),
                   ],
                 ),
