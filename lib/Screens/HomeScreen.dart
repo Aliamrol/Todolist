@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/taskItem.dart';
 
 import '../Task.dart';
 
@@ -10,7 +11,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  List<Task> tasks = [];
+  List<Task> tasks = [
+    Task(title: "Meet Maghsoud", id: DateTime.now().microsecondsSinceEpoch)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,12 @@ class _HomeScreen extends State<HomeScreen> {
         children: [
           Expanded(
               child: ListView.builder(
-            itemCount: tasks.length,
-            itemBuilder: (context, index) {},
-          )),
+                  itemCount: tasks.length,
+                  itemBuilder: (BuildContext context, int index) => TaskItem(
+                        title: tasks[index].title,
+                        isDone: tasks[index].isDone,
+                        description: tasks[index].description,
+                      ))),
         ],
       ),
     );
