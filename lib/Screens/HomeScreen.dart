@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import '../Task.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
-
-  List<Task> tasks = [];
+  const HomeScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  List<Task> tasks = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +25,15 @@ class _HomeScreen extends State<HomeScreen> {
           icon: Icon(Icons.menu),
           onPressed: () {},
         ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+              child: ListView.builder(
+            itemCount: tasks.length,
+            itemBuilder: (context, index) {},
+          )),
+        ],
       ),
     );
   }
