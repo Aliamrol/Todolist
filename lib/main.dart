@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'homeScreen.dart';
+import 'package:task_manager/Screens/HomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +17,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             // fontFamily: "nas",
             scaffoldBackgroundColor: Colors.grey[200]),
-        home: const Scaffold(
-          body: HomeScreen(),
+        home: Scaffold(
+          body: SafeArea(
+            child: HomeScreen(),
+          ),
         ));
   }
 }
