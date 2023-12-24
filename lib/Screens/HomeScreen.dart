@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/Drawer.dart';
 import 'package:task_manager/taskItem.dart';
 
 import '../Task.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  List<Task> tasks;
+  List<Task> tasksDone;
+
+  HomeScreen({super.key, required this.tasks, required this.tasksDone});
 
   @override
-  State<StatefulWidget> createState() => _HomeScreen();
+  State<StatefulWidget> createState() =>
+      _HomeScreen(tasks: this.tasks, tasksDone: this.tasksDone);
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  List<Task> tasks = [
-    Task(title: "Meet Maghsoud", id: DateTime.now().microsecondsSinceEpoch)
-  ];
+  List<Task> tasks;
+  List<Task> tasksDone;
+
+  _HomeScreen({required this.tasks, required this.tasksDone});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerMenu(
+        tasks: this.tasks,
+        tasksDone: this.tasksDone,
+      ),
       appBar: AppBar(
         title: const Text(
           "TO DO LIST",
@@ -26,7 +36,9 @@ class _HomeScreen extends State<HomeScreen> {
         backgroundColor: Colors.grey[400],
         leading: IconButton(
           icon: Icon(Icons.menu),
-          onPressed: () {},
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
         ),
       ),
       body: Column(
