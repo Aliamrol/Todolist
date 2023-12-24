@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
             child: HomeScreen(
               tasks: this.tasks,
               tasksDone: this.tasksDone,
+              AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
             ),
           ),
         ));

@@ -11,13 +11,16 @@ class TaskItem extends StatelessWidget {
   List<Task> tasks;
   List<Task> tasksDone;
 
+  final Function AddFromTasksDoneToTask;
+
   TaskItem(
       {super.key,
       required this.title,
       required this.isDone,
       this.description,
       required this.tasks,
-      required this.tasksDone});
+      required this.tasksDone,
+      required this.AddFromTasksDoneToTask});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class TaskItem extends StatelessWidget {
               padding: EdgeInsets.only(right: 5),
               child: IconButton(
                   onPressed: () {
-
+                    
                   },
                   icon: isDone
                       ? Icon(Icons.task_alt)

@@ -7,19 +7,21 @@ import 'Task.dart';
 class DrawerMenu extends StatefulWidget {
   List<Task> tasks;
   List<Task> tasksDone;
+  final Function AddFromTasksDoneToTask;
 
-  DrawerMenu({super.key, required this.tasks, required this.tasksDone});
+  DrawerMenu({super.key, required this.tasks, required this.tasksDone, required this.AddFromTasksDoneToTask});
 
   @override
   State<StatefulWidget> createState() =>
-      _DrawerMenu(tasks: this.tasks, tasksDone: this.tasksDone);
+      _DrawerMenu(tasks: this.tasks, tasksDone: this.tasksDone, AddFromTasksDoneToTask: this.AddFromTasksDoneToTask);
 }
 
 class _DrawerMenu extends State<DrawerMenu> {
   List<Task> tasks;
   List<Task> tasksDone;
+  final Function AddFromTasksDoneToTask;
 
-  _DrawerMenu({required this.tasks, required this.tasksDone});
+  _DrawerMenu({required this.tasks, required this.tasksDone, required this.AddFromTasksDoneToTask});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class _DrawerMenu extends State<DrawerMenu> {
                       description: tasksDone[index].description,
                       tasks: this.tasks,
                       tasksDone: this.tasksDone,
+                      AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
                     ))));
   }
 }

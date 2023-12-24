@@ -7,21 +7,28 @@ import '../Task.dart';
 class HomeScreen extends StatefulWidget {
   List<Task> tasks;
   List<Task> tasksDone;
+  final Function AddFromTasksDoneToTask;
 
-  HomeScreen({super.key, required this.tasks, required this.tasksDone});
+  HomeScreen(
+      {super.key,
+      required this.tasks,
+      required this.tasksDone,
+      required this.AddFromTasksDoneToTask});
 
   @override
   State<StatefulWidget> createState() =>
-      _HomeScreen(tasks: this.tasks, tasksDone: this.tasksDone);
+      _HomeScreen(tasks: this.tasks, tasksDone: this.tasksDone, AddFromTasksDoneToTask: this.AddFromTasksDoneToTask);
 }
 
 class _HomeScreen extends State<HomeScreen> {
   List<Task> tasks;
   List<Task> tasksDone;
 
+  final Function AddFromTasksDoneToTask;
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  _HomeScreen({required this.tasks, required this.tasksDone});
+  _HomeScreen({required this.tasks, required this.tasksDone, required this.AddFromTasksDoneToTask});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +37,7 @@ class _HomeScreen extends State<HomeScreen> {
       drawer: DrawerMenu(
         tasks: this.tasks,
         tasksDone: this.tasksDone,
+        AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
       ),
       appBar: AppBar(
         title: const Text(
@@ -55,6 +63,7 @@ class _HomeScreen extends State<HomeScreen> {
                         description: tasks[index].description,
                         tasks: this.tasks,
                         tasksDone: this.tasksDone,
+                        AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
                       ))),
         ],
       ),
