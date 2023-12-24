@@ -10,22 +10,28 @@ void main() {
 class MyApp extends StatelessWidget {
   List<Task> tasks = [
     Task(
-      title: "Meet Bakhtiar",
-      id: DateTime.now().microsecondsSinceEpoch,
+      title: "Mina",
+      id: 930,
     ),
   ];
   List<Task> tasksDone = [
     Task(
-        title: "meet maghsoud",
-        id: DateTime.now().microsecondsSinceEpoch,
+        title: "Ali",
+        id: 905,
         isDone: true),
   ];
 
-  AddFromTasksDoneToTask(int id) {
-    Task t = tasksDone.where((element) => element.id == id) as Task;
-    tasksDone.removeWhere((element) => element.id == id);
-    tasks.add(t);
-  }
+  // AddFromTasksDoneToTask(int id) {
+  //   Task t = Task(title: "BUG", id: 0000);
+  //   for (int index = 0; index < tasksDone.length; index++) {
+  //     if (tasksDone[index].id == id) {
+  //       t = tasksDone[index];
+  //     }
+  //   }
+  //   t.isDone = false;
+  //   tasksDone.removeWhere((element) => element.id == id);
+  //   tasks.add(t);
+  // }
 
   MyApp({super.key});
 
@@ -43,7 +49,6 @@ class MyApp extends StatelessWidget {
             child: HomeScreen(
               tasks: this.tasks,
               tasksDone: this.tasksDone,
-              AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
             ),
           ),
         ));

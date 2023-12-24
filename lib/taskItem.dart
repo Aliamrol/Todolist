@@ -3,24 +3,62 @@ import 'package:flutter/material.dart';
 
 import 'Task.dart';
 
-class TaskItem extends StatelessWidget {
+class TaskItem extends StatefulWidget {
   late String title;
   late bool isDone;
   late String? description;
+  late int id;
 
   List<Task> tasks;
   List<Task> tasksDone;
 
   final Function AddFromTasksDoneToTask;
+  final Function DoneATask;
 
   TaskItem(
       {super.key,
       required this.title,
       required this.isDone,
       this.description,
+      required this.id,
       required this.tasks,
       required this.tasksDone,
-      required this.AddFromTasksDoneToTask});
+      required this.AddFromTasksDoneToTask,
+      required this.DoneATask});
+
+  @override
+  State<StatefulWidget> createState() => _TaskItem(
+      title: this.title,
+      isDone: this.isDone,
+      description: this.description,
+      id: this.id,
+      tasks: this.tasks,
+      tasksDone: this.tasksDone,
+      AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
+      DoneATask: this.DoneATask);
+}
+
+class _TaskItem extends State<TaskItem> {
+  late String title;
+  late bool isDone;
+  late String? description;
+  late int id;
+
+  List<Task> tasks;
+  List<Task> tasksDone;
+
+  final Function AddFromTasksDoneToTask;
+  final Function DoneATask;
+
+  _TaskItem(
+      {required this.title,
+      required this.isDone,
+      this.description,
+      required this.id,
+      required this.tasks,
+      required this.tasksDone,
+      required this.AddFromTasksDoneToTask,
+      required this.DoneATask});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +84,7 @@ class TaskItem extends StatelessWidget {
                         fontSize: 18),
                   ),
                   Text(
-                    description ?? "no description",
+                    id.toString(),
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -59,7 +97,9 @@ class TaskItem extends StatelessWidget {
               padding: EdgeInsets.only(right: 5),
               child: IconButton(
                   onPressed: () {
-                    
+                    setState(() {
+                      isDone ? AddFromTasksDoneToTask(id) : DoneATask(id);
+                    });
                   },
                   icon: isDone
                       ? Icon(Icons.task_alt)

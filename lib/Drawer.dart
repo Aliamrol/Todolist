@@ -7,21 +7,37 @@ import 'Task.dart';
 class DrawerMenu extends StatefulWidget {
   List<Task> tasks;
   List<Task> tasksDone;
-  final Function AddFromTasksDoneToTask;
 
-  DrawerMenu({super.key, required this.tasks, required this.tasksDone, required this.AddFromTasksDoneToTask});
+  final Function AddFromTasksDoneToTask;
+  final Function DoneATask;
+
+  DrawerMenu(
+      {super.key,
+      required this.tasks,
+      required this.tasksDone,
+      required this.AddFromTasksDoneToTask,
+      required this.DoneATask});
 
   @override
-  State<StatefulWidget> createState() =>
-      _DrawerMenu(tasks: this.tasks, tasksDone: this.tasksDone, AddFromTasksDoneToTask: this.AddFromTasksDoneToTask);
+  State<StatefulWidget> createState() => _DrawerMenu(
+      tasks: this.tasks,
+      tasksDone: this.tasksDone,
+      AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
+      DoneATask: this.DoneATask);
 }
 
 class _DrawerMenu extends State<DrawerMenu> {
   List<Task> tasks;
   List<Task> tasksDone;
-  final Function AddFromTasksDoneToTask;
 
-  _DrawerMenu({required this.tasks, required this.tasksDone, required this.AddFromTasksDoneToTask});
+  final Function AddFromTasksDoneToTask;
+  final Function DoneATask;
+
+  _DrawerMenu(
+      {required this.tasks,
+      required this.tasksDone,
+      required this.AddFromTasksDoneToTask,
+      required this.DoneATask});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +49,11 @@ class _DrawerMenu extends State<DrawerMenu> {
                       title: tasksDone[index].title,
                       isDone: tasksDone[index].isDone,
                       description: tasksDone[index].description,
+                      id: tasksDone[index].id,
                       tasks: this.tasks,
                       tasksDone: this.tasksDone,
                       AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
+                      DoneATask: this.DoneATask,
                     ))));
   }
 }
