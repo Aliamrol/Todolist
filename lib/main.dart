@@ -8,19 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List<Task> tasks = [
-    Task(
-      title: "Mina",
-      id: 930,
-    ),
-  ];
-  List<Task> tasksDone = [
-    Task(
-        title: "Ali",
-        id: 905,
-        isDone: true),
-  ];
-
   // AddFromTasksDoneToTask(int id) {
   //   Task t = Task(title: "BUG", id: 0000);
   //   for (int index = 0; index < tasksDone.length; index++) {
@@ -46,10 +33,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.grey[200]),
         home: Scaffold(
           body: SafeArea(
-            child: HomeScreen(
-              tasks: this.tasks,
-              tasksDone: this.tasksDone,
-            ),
+            child: HomeScreen(),
           ),
         ));
   }

@@ -5,23 +5,20 @@ import 'package:task_manager/taskItem.dart';
 import '../Task.dart';
 
 class HomeScreen extends StatefulWidget {
-  List<Task> tasks;
-  List<Task> tasksDone;
-
-  HomeScreen({
-    super.key,
-    required this.tasks,
-    required this.tasksDone,
-  });
-
   @override
-  State<StatefulWidget> createState() =>
-      _HomeScreen(tasks: this.tasks, tasksDone: this.tasksDone);
+  State<StatefulWidget> createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  List<Task> tasks;
-  List<Task> tasksDone;
+  List<Task> tasks = [
+    Task(
+      title: "Mina",
+      id: 930,
+    ),
+  ];
+  List<Task> tasksDone = [
+    Task(title: "Ali", id: 905, isDone: true),
+  ];
 
   AddFromTasksDoneToTask(int id) {
     setState(() {
@@ -34,12 +31,11 @@ class _HomeScreen extends State<HomeScreen> {
       t.isDone = false;
       tasksDone.removeWhere((element) => element.id == id);
       tasks.add(t);
-      print("Tasks : ${tasks}, ---------- ${id}");
-      print("Tasks Done : ${tasksDone} ---------- ${id}");
     });
   }
 
   DoneATask(int id) {
+    print("id is ---------------- ${id}");
     setState(() {
       Task t = Task(title: "BUG Done a Task", id: 1111);
       for (int index = 0; index < tasks.length; index++) {
@@ -50,17 +46,30 @@ class _HomeScreen extends State<HomeScreen> {
       t.isDone = true;
       tasks.removeWhere((element) => element.id == id);
       tasksDone.add(t);
-      print("Tasks : ${tasks}, ---------- ${id}");
-      print("Tasks Done : ${tasksDone} ---------- ${id}");
     });
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  _HomeScreen({required this.tasks, required this.tasksDone});
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> rows = [];
+    for (int i = 0; i < tasks.length; i++) {
+      rows.add(SizedBox(
+        height: 20,
+      ));
+      rows.add(TaskItem(
+        title: tasks[i].title,
+        isDone: tasks[i].isDone,
+        description: tasks[i].description,
+        id: tasks[i].id,
+        tasks: this.tasks,
+        tasksDone: this.tasksDone,
+        AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
+        DoneATask: this.DoneATask,
+      ));
+    }
     return Scaffold(
       key: _scaffoldKey,
       drawer: DrawerMenu(
@@ -84,21 +93,9 @@ class _HomeScreen extends State<HomeScreen> {
           },
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
-          Expanded(
-              child: ListView.builder(
-                  itemCount: tasks.length,
-                  itemBuilder: (BuildContext context, int index) => TaskItem(
-                        title: tasks[index].title,
-                        isDone: tasks[index].isDone,
-                        description: tasks[index].description,
-                        id: tasks[index].id,
-                        tasks: this.tasks,
-                        tasksDone: this.tasksDone,
-                        AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
-                        DoneATask: this.DoneATask,
-                      ))),
+          ...rows,
         ],
       ),
     );

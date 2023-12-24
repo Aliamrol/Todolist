@@ -19,41 +19,25 @@ class DrawerMenu extends StatefulWidget {
       required this.DoneATask});
 
   @override
-  State<StatefulWidget> createState() => _DrawerMenu(
-      tasks: this.tasks,
-      tasksDone: this.tasksDone,
-      AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
-      DoneATask: this.DoneATask);
+  State<StatefulWidget> createState() => _DrawerMenu();
 }
 
 class _DrawerMenu extends State<DrawerMenu> {
-  List<Task> tasks;
-  List<Task> tasksDone;
-
-  final Function AddFromTasksDoneToTask;
-  final Function DoneATask;
-
-  _DrawerMenu(
-      {required this.tasks,
-      required this.tasksDone,
-      required this.AddFromTasksDoneToTask,
-      required this.DoneATask});
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
         child: Expanded(
             child: ListView.builder(
-                itemCount: tasksDone.length,
+                itemCount: widget.tasksDone.length,
                 itemBuilder: (BuildContext context, int index) => TaskItem(
-                      title: tasksDone[index].title,
-                      isDone: tasksDone[index].isDone,
-                      description: tasksDone[index].description,
-                      id: tasksDone[index].id,
-                      tasks: this.tasks,
-                      tasksDone: this.tasksDone,
-                      AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
-                      DoneATask: this.DoneATask,
+                      title: widget.tasksDone[index].title,
+                      isDone: widget.tasksDone[index].isDone,
+                      description: widget.tasksDone[index].description,
+                      id: widget.tasksDone[index].id,
+                      tasks: widget.tasks,
+                      tasksDone: widget.tasksDone,
+                      AddFromTasksDoneToTask: widget.AddFromTasksDoneToTask,
+                      DoneATask: widget.DoneATask,
                     ))));
   }
 }
