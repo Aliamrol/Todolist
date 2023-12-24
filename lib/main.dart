@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     Task(
       title: "Meet Bakhtiar",
       id: DateTime.now().microsecondsSinceEpoch,
-    )
+    ),
   ];
   List<Task> tasksDone = [
     Task(
@@ -20,6 +20,12 @@ class MyApp extends StatelessWidget {
         id: DateTime.now().microsecondsSinceEpoch,
         isDone: true),
   ];
+
+  AddFromTasksDoneToTask(int id) {
+    Task t = tasksDone.where((element) => element.id == id) as Task;
+    tasksDone.removeWhere((element) => element.id == id);
+    tasks.add(t);
+  }
 
   MyApp({super.key});
 

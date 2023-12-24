@@ -31,6 +31,8 @@ class _DrawerMenu extends State<DrawerMenu> {
                       title: tasksDone[index].title,
                       isDone: tasksDone[index].isDone,
                       description: tasksDone[index].description,
+                      tasks: this.tasks,
+                      tasksDone: this.tasksDone,
                     ))));
   }
 }

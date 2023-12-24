@@ -19,11 +19,14 @@ class _HomeScreen extends State<HomeScreen> {
   List<Task> tasks;
   List<Task> tasksDone;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   _HomeScreen({required this.tasks, required this.tasksDone});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: DrawerMenu(
         tasks: this.tasks,
         tasksDone: this.tasksDone,
@@ -37,7 +40,7 @@ class _HomeScreen extends State<HomeScreen> {
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
-            Scaffold.of(context).openDrawer();
+            _scaffoldKey.currentState?.openDrawer();
           },
         ),
       ),
@@ -50,6 +53,8 @@ class _HomeScreen extends State<HomeScreen> {
                         title: tasks[index].title,
                         isDone: tasks[index].isDone,
                         description: tasks[index].description,
+                        tasks: this.tasks,
+                        tasksDone: this.tasksDone,
                       ))),
         ],
       ),

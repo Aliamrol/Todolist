@@ -1,12 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Task.dart';
+
 class TaskItem extends StatelessWidget {
   late String title;
   late bool isDone;
   late String? description;
 
-  TaskItem({required this.title, required this.isDone, this.description});
+  List<Task> tasks;
+  List<Task> tasksDone;
+
+  TaskItem(
+      {super.key,
+      required this.title,
+      required this.isDone,
+      this.description,
+      required this.tasks,
+      required this.tasksDone});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +55,9 @@ class TaskItem extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 5),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   icon: isDone
                       ? Icon(Icons.task_alt)
                       : Icon(Icons.circle_outlined)),
