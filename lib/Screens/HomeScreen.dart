@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/Drawer.dart';
+import 'package:task_manager/floatingPoint.dart';
 import 'package:task_manager/taskItem.dart';
-
 import '../Task.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -51,7 +52,6 @@ class _HomeScreen extends State<HomeScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   @override
   Widget build(BuildContext context) {
     List<Widget> rows = [];
@@ -70,6 +70,7 @@ class _HomeScreen extends State<HomeScreen> {
         DoneATask: this.DoneATask,
       ));
     }
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: DrawerMenu(
@@ -85,7 +86,7 @@ class _HomeScreen extends State<HomeScreen> {
         ),
         backgroundColor: Colors.grey[400],
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(CupertinoIcons.chevron_back),
           onPressed: () {
             setState(() {
               _scaffoldKey.currentState?.openDrawer();
@@ -98,6 +99,7 @@ class _HomeScreen extends State<HomeScreen> {
           ...rows,
         ],
       ),
+      floatingActionButton: floatingPoint(),
     );
   }
 }

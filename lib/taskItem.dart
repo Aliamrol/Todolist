@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'Task.dart';
+
 
 class TaskItem extends StatefulWidget {
   late String title;
