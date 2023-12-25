@@ -8,17 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // AddFromTasksDoneToTask(int id) {
-  //   Task t = Task(title: "BUG", id: 0000);
-  //   for (int index = 0; index < tasksDone.length; index++) {
-  //     if (tasksDone[index].id == id) {
-  //       t = tasksDone[index];
-  //     }
-  //   }
-  //   t.isDone = false;
-  //   tasksDone.removeWhere((element) => element.id == id);
-  //   tasks.add(t);
-  // }
 
   MyApp({super.key});
 
