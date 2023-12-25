@@ -12,7 +12,8 @@ class newTaskScreen extends StatefulWidget {
 }
 
 class _newTaskScreen extends State<newTaskScreen> {
-  final TextEditingController _controller = TextEditingController();
+  TextEditingController controllerTitle = TextEditingController();
+  TextEditingController controllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +33,8 @@ class _newTaskScreen extends State<newTaskScreen> {
           Padding(
             padding: EdgeInsets.only(top: 20, left: 20, right: 20),
             child: TextField(
+              controller: controllerTitle,
               decoration: InputDecoration(hintText: "enter title: "),
-              controller: _controller,
               onSubmitted: (value) {
                 title_ = value;
               },
@@ -42,8 +43,8 @@ class _newTaskScreen extends State<newTaskScreen> {
           Padding(
             padding: EdgeInsets.only(top: 100, left: 20, right: 20),
             child: TextField(
+              controller: controllerDescription,
               decoration: InputDecoration(hintText: "enter title: "),
-              controller: _controller,
               onSubmitted: (value) {
                 description_ = value;
               },
@@ -55,13 +56,26 @@ class _newTaskScreen extends State<newTaskScreen> {
         backgroundColor: Colors.blue,
         child: Icon(Icons.done),
         onPressed: () {
-          if (title_ != "") {
-            Task task = Task(
-                title: title_,
-                id: DateTime.now().microsecondsSinceEpoch,
-                description: description_);
-            widget.AddNewTask(task);
-          }
+          setState(() {
+            if (title_ != "") {
+              Task task = Task(
+                  title: title_,
+                  id: DateTime.now().microsecondsSinceEpoch,
+                  description: description_);
+              widget.AddNewTask(task);
+              controllerTitle.clear();
+              controllerTitle.clear();
+              Navigator.pop(context);
+            } else {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const AlertDialog(
+                      title: Text("Please enter the title"),
+                    );
+                  });
+            }
+          });
         },
       ),
     );

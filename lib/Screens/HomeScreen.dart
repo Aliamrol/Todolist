@@ -36,7 +36,6 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   DoneATask(int id) {
-    print("id is ---------------- ${id}");
     setState(() {
       Task t = Task(title: "BUG Done a Task", id: 1111);
       for (int index = 0; index < tasks.length; index++) {

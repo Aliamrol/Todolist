@@ -57,7 +57,7 @@ class _TaskItem extends State<TaskItem> {
                         fontSize: 18),
                   ),
                   Text(
-                    widget.id.toString(),
+                    widget.description ?? "",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
