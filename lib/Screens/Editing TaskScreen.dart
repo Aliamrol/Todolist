@@ -44,7 +44,7 @@ class _editinTaskScreen extends State<editinTaskScreen> {
             onPressed: () {
               Navigator.pop(context);
             }),
-        title: Text("EDITING TASK"),
+        title: Text("EDITING TASK : ${widget.title}"),
       ),
       body: Column(
         children: [

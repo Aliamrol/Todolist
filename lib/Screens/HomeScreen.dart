@@ -104,7 +104,7 @@ class _HomeScreen extends State<HomeScreen> {
         ),
         backgroundColor: Colors.grey[400],
         leading: IconButton(
-          icon: Icon(CupertinoIcons.chevron_back),
+          icon: Icon(Icons.menu),
           onPressed: () {
             setState(() {
               _scaffoldKey.currentState?.openDrawer();
