@@ -73,7 +73,7 @@ class _TaskItem extends State<TaskItem> {
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w300),
-                  )
+                  ),
                 ],
               ),
             ),
