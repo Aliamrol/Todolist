@@ -50,7 +50,9 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   AddNewTask(Task task) {
-    tasks.add(task);
+    setState(() {
+      tasks.add(task);
+    });
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

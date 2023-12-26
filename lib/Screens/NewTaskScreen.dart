@@ -35,7 +35,7 @@ class _newTaskScreen extends State<newTaskScreen> {
             child: TextField(
               controller: controllerTitle,
               decoration: InputDecoration(hintText: "enter title: "),
-              onSubmitted: (value) {
+              onChanged: (value) {
                 title_ = value;
               },
             ),
@@ -45,7 +45,7 @@ class _newTaskScreen extends State<newTaskScreen> {
             child: TextField(
               controller: controllerDescription,
               decoration: InputDecoration(hintText: "enter title: "),
-              onSubmitted: (value) {
+              onChanged: (value) {
                 description_ = value;
               },
             ),
