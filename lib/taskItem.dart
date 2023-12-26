@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/Screens/Editing%20TaskScreen.dart';
+import 'package:task_manager/Screens/NewTaskScreen.dart';
 import 'Task.dart';
-
 
 class TaskItem extends StatefulWidget {
   late String title;
@@ -13,6 +14,7 @@ class TaskItem extends StatefulWidget {
 
   final Function AddFromTasksDoneToTask;
   final Function DoneATask;
+  final Function editingTask;
 
   TaskItem(
       {super.key,
@@ -23,19 +25,28 @@ class TaskItem extends StatefulWidget {
       required this.tasks,
       required this.tasksDone,
       required this.AddFromTasksDoneToTask,
-      required this.DoneATask});
+      required this.DoneATask,
+      required this.editingTask});
 
   @override
   State<StatefulWidget> createState() => _TaskItem();
 }
 
 class _TaskItem extends State<TaskItem> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => editinTaskScreen(
+                      title: widget.title,
+                      description: widget.description ?? "",
+                      id: widget.id,
+                      editingTask: widget.editingTask,
+                    )));
+      },
       child: Container(
         height: 70,
         margin: EdgeInsets.only(top: 7),
@@ -71,7 +82,9 @@ class _TaskItem extends State<TaskItem> {
               child: IconButton(
                   onPressed: () {
                     setState(() {
-                      widget.isDone ? widget.AddFromTasksDoneToTask(widget.id) : widget.DoneATask(widget.id);
+                      widget.isDone
+                          ? widget.AddFromTasksDoneToTask(widget.id)
+                          : widget.DoneATask(widget.id);
                     });
                   },
                   icon: widget.isDone

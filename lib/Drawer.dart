@@ -10,13 +10,15 @@ class DrawerMenu extends StatefulWidget {
 
   final Function AddFromTasksDoneToTask;
   final Function DoneATask;
+  final Function editingTask;
 
   DrawerMenu(
       {super.key,
       required this.tasks,
       required this.tasksDone,
       required this.AddFromTasksDoneToTask,
-      required this.DoneATask});
+      required this.DoneATask,
+      required this.editingTask});
 
   @override
   State<StatefulWidget> createState() => _DrawerMenu();
@@ -38,6 +40,7 @@ class _DrawerMenu extends State<DrawerMenu> {
                       tasksDone: widget.tasksDone,
                       AddFromTasksDoneToTask: widget.AddFromTasksDoneToTask,
                       DoneATask: widget.DoneATask,
+                      editingTask: widget.editingTask,
                     ))));
   }
 }
