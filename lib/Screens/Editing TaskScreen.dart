@@ -28,6 +28,7 @@ class _editinTaskScreen extends State<editinTaskScreen> {
   @override
   void initState() {
     title_ = widget.title;
+    description_ = widget.description;
     controllerTitle.text = widget.title;
     controllerDescription.text = widget.description;
   }
