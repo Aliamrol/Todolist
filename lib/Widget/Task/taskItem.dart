@@ -8,8 +8,14 @@ class taskItem extends StatelessWidget {
   final int index;
   final Task task;
   final Function updateTask;
+  final Function delete;
 
-  taskItem({required this.context, required this.index, required this.task, required this.updateTask});
+  taskItem(
+      {required this.context,
+      required this.index,
+      required this.task,
+      required this.updateTask,
+      required this.delete});
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +46,23 @@ class taskItem extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
-              Icons.delete,
-              color: Colors.red[300],
-              size: 20,
-            )
+            IconButton(
+                onPressed: () {
+                  delete(task);
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red[300],
+                  size: 20,
+                ))
           ],
         ),
       ),
       onTap: () async {
         Task result = await Navigator.push(
-            context, MaterialPageRoute(builder: (context) => TaskScreen(task : this.task)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => TaskScreen(task: this.task)));
         // if (result != null) {
         //   AddNewTaskToTasks(result);
         // }
