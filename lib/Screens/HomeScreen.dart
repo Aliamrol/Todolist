@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/Drawer.dart';
+import 'package:task_manager/Screens/DeletedTasksScreen.dart';
 import 'package:task_manager/floatingPoint.dart';
 import 'package:task_manager/taskItem.dart';
 import '../Task.dart';
@@ -82,6 +83,17 @@ class _HomeScreen extends State<HomeScreen> {
     });
   }
 
+  DeleteTaskSure(Task task) {
+    setState(() {
+      taskDeleted =
+          taskDeleted.where((element) => element.id != task.id).toList();
+    });
+  }
+
+  ReturnTask() {
+    
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -120,6 +132,25 @@ class _HomeScreen extends State<HomeScreen> {
           "TO DO LIST",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
         ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => deletedTasksScreen(
+                              deletedTasks: taskDeleted,
+                              deleteTaskSure: DeleteTaskSure,
+                              returnTask: ReturnTask)));
+                },
+                icon: Icon(
+                  CupertinoIcons.delete,
+                  color: Colors.black,
+                )),
+          )
+        ],
         backgroundColor: Colors.grey[400],
         leading: IconButton(
           icon: Icon(Icons.menu),
