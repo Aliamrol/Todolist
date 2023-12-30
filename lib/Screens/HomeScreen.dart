@@ -20,6 +20,7 @@ class _HomeScreen extends State<HomeScreen> {
   List<Task> tasksDone = [
     Task(title: "Ali", id: 905, isDone: true),
   ];
+  List<Task> taskDeleted = [];
 
   AddFromTasksDoneToTask(int id) {
     setState(() {
@@ -68,7 +69,16 @@ class _HomeScreen extends State<HomeScreen> {
 
   DeleteTask(int id) {
     setState(() {
+      taskDeleted.add(tasks.where((element) => element.id == id).toList()[0]);
       tasks = tasks.where((element) => element.id != id).toList();
+    });
+  }
+
+  DeleteTaskDone(int id) {
+    setState(() {
+      taskDeleted
+          .add(tasksDone.where((element) => element.id == id).toList()[0]);
+      tasksDone = tasksDone.where((element) => element.id != id).toList();
     });
   }
 
@@ -103,7 +113,7 @@ class _HomeScreen extends State<HomeScreen> {
         AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
         DoneATask: this.DoneATask,
         editingTask: this.EditingTask,
-        deleteTask: this.DoneATask,
+        deleteTask: this.DeleteTaskDone,
       ),
       appBar: AppBar(
         title: const Text(
