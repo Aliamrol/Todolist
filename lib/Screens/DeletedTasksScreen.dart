@@ -20,6 +20,8 @@ class deletedTasksScreen extends StatefulWidget {
 }
 
 class _deletedTasksScreen extends State<deletedTasksScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     List<Widget> rows = [];
@@ -33,6 +35,7 @@ class _deletedTasksScreen extends State<deletedTasksScreen> {
           returnTask: widget.returnTask));
     }
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(
           "Deleted Tasks",
@@ -43,7 +46,9 @@ class _deletedTasksScreen extends State<deletedTasksScreen> {
             padding: EdgeInsets.only(right: 10),
             child: IconButton(
                 onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
+                  setState(() {
+                    Scaffold.of(context).openEndDrawer();
+                  });
                 },
                 icon: Icon(
                   CupertinoIcons.delete,

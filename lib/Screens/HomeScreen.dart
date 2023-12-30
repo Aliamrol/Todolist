@@ -90,8 +90,18 @@ class _HomeScreen extends State<HomeScreen> {
     });
   }
 
-  ReturnTask() {
-    
+  ReturnTask(Task task) {
+    setState(() {
+      Task t =
+          taskDeleted.where((element) => element.id == task.id).toList()[0];
+      taskDeleted =
+          taskDeleted.where((element) => element.id != task.id).toList();
+      if (t.isDone) {
+        tasksDone.add(t);
+      } else {
+        tasks.add(t);
+      }
+    });
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

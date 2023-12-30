@@ -51,13 +51,15 @@ class _taskItemDeleted extends State<taskItemDeleted> {
                 )
               ],
             ),
-            Row(
+            Row(  
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 5),
                   child: IconButton(
                       onPressed: () {
-                        setState(() {});
+                        setState(() {
+                          widget.returnTask(widget.task);
+                        });
                       },
                       icon: Icon(CupertinoIcons.refresh_thin)),
                 ),
@@ -66,7 +68,7 @@ class _taskItemDeleted extends State<taskItemDeleted> {
                     child: IconButton(
                         onPressed: () {
                           setState(() {
-                            widget.deleteTask(widget.task.id);
+                            widget.deleteTask(widget.task);
                           });
                         },
                         icon: Icon(
