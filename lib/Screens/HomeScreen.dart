@@ -66,6 +66,12 @@ class _HomeScreen extends State<HomeScreen> {
     });
   }
 
+  DeleteTask(int id) {
+    setState(() {
+      tasks = tasks.where((element) => element.id != id).toList();
+    });
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -85,6 +91,7 @@ class _HomeScreen extends State<HomeScreen> {
         AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
         DoneATask: this.DoneATask,
         editingTask: this.EditingTask,
+        deleteTask: this.DeleteTask,
       ));
     }
 
@@ -96,6 +103,7 @@ class _HomeScreen extends State<HomeScreen> {
         AddFromTasksDoneToTask: this.AddFromTasksDoneToTask,
         DoneATask: this.DoneATask,
         editingTask: this.EditingTask,
+        deleteTask: this.DoneATask,
       ),
       appBar: AppBar(
         title: const Text(

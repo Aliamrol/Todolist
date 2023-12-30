@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/Screens/Editing%20TaskScreen.dart';
 import 'package:task_manager/Screens/NewTaskScreen.dart';
@@ -15,6 +16,7 @@ class TaskItem extends StatefulWidget {
   final Function AddFromTasksDoneToTask;
   final Function DoneATask;
   final Function editingTask;
+  final Function deleteTask;
 
   TaskItem(
       {super.key,
@@ -26,7 +28,8 @@ class TaskItem extends StatefulWidget {
       required this.tasksDone,
       required this.AddFromTasksDoneToTask,
       required this.DoneATask,
-      required this.editingTask});
+      required this.editingTask,
+      required this.deleteTask});
 
   @override
   State<StatefulWidget> createState() => _TaskItem();
@@ -55,41 +58,59 @@ class _TaskItem extends State<TaskItem> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10, top: 8),
+                  child: Text(
                     widget.title,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
                   ),
-                  Text(
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 10, top: 10),
+                  child: Text(
                     widget.description ?? "",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w300),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 5),
-              child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.isDone
-                          ? widget.AddFromTasksDoneToTask(widget.id)
-                          : widget.DoneATask(widget.id);
-                    });
-                  },
-                  icon: widget.isDone
-                      ? Icon(Icons.task_alt)
-                      : Icon(Icons.circle_outlined)),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          widget.isDone
+                              ? widget.AddFromTasksDoneToTask(widget.id)
+                              : widget.DoneATask(widget.id);
+                        });
+                      },
+                      icon: widget.isDone
+                          ? Icon(Icons.task_alt)
+                          : Icon(Icons.circle_outlined)),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(right: 5),
+                    child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            widget.deleteTask(widget.id);
+                          });
+                        },
+                        icon: Icon(
+                          CupertinoIcons.delete_simple,
+                          color: Colors.red,
+                        ))),
+              ],
             )
           ],
         ),
